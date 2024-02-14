@@ -1,0 +1,18 @@
+<div class="pagination">
+  <button (click)="onPrevPage()" [disabled]="selectedPageIndex === 1">
+    Prev
+  </button>
+  <span
+    *ngFor="let page of pages"
+    [class.active]="selectedPageIndex === page"
+    (click)="onPageIndexChange(page)"
+  >
+    {{ page }}
+  </span>
+  <button
+    (click)="onNextPage()"
+    [disabled]="selectedPageIndex === pages.length"
+  >
+    Next
+  </button>
+</div>

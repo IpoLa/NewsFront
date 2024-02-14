@@ -42,6 +42,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { HttpClientModule } from '@angular/common/http';
+import { CustomPaginatorModule } from './custom-paginator.module'; // Import CustomPaginatorModule
 @NgModule({
   declarations: [
     AppComponent
@@ -93,7 +94,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    HttpClientModule
+    HttpClientModule,
+    CustomPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

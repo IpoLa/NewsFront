@@ -6,21 +6,35 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NewsService {
 
-  api_key = 'your api key';
+  apiUrl = 'http://localhost:8000';
+
   constructor(private http: HttpClient) { }
 
-
   initSources() {
-    return this.http.get('https://newsapi.org/v2/sources?language=en&apiKey=' + this.api_key);
+    return this.http.get(`${this.apiUrl}/articles/sources/`);
   }
 
-
-  initArticles() {
-    return this.http.get('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=' + this.api_key);
+  initCategories() {
+    return this.http.get(`${this.apiUrl}/articles/categories/`);
   }
 
-  getArticlesByID(source: String) {
-    return this.http.get('https://newsapi.org/v2/top-headlines?sources=' + source + '&apiKey=' + this.api_key);
+  initArticles(page?: number) {
+    if (page !== undefined) {
+      return this.http.get(`${this.apiUrl}/articles/?page=${page}`);
+    } else {
+      // If no page number is provided, fetch all articles
+      return this.http.get(`${this.apiUrl}/articles/?page=1`);
+    }
+  }
+  getArticlesByCategory(category: String) {
+    return this.http.get(`${this.apiUrl}/articles/category/${category}/`);
   }
 
+  getArticleById(id?: String) {
+    return this.http.get(`${this.apiUrl}/articles/${id}`);
+  }
+
+  searchArticles(query: String) {
+    return this.http.get(`${this.apiUrl}/articles/search/?query=${query}`);
+  }
 }
